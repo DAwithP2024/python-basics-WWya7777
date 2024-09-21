@@ -114,5 +114,4 @@ def validate_name(name):
 def validate_email(email):
     return "@" in email
 
-# 启动程序
 main()
