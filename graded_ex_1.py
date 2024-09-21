@@ -112,7 +112,6 @@ def main():
                     if 1 <= product_choice <= len(product_list):
                         product_name, product_price = product_list[product_choice - 1]
                         
-                       
                         while True:
                             try:
                                 quantity = int(input(f"Enter quantity for {product_name}: "))
@@ -143,7 +142,7 @@ def main():
                 elif option == 4:  
                     display_cart(cart)
                     if cart:  
-                        total_cost = sum(quantity * next(price for name, price in products[cat] if name == product) for cat in products for product, quantity in cart)
+                        total_cost = sum(quantity * next(price for name, price in products[cat] if name == product) for product, quantity in cart for cat in products if any(name == product for name, _ in products[cat]))
                         address = input("Enter delivery address: ")
                         generate_receipt(name, email, cart, total_cost, address)
                     else:
